@@ -11,22 +11,36 @@
   
   export const Reducer =  (state, action) => {
     switch (action.type) {
-      case 'TOGGLE_EDITING':
-        return {
-          ...state,
-          editing: !state.editing
-        };
+      case 'TOGGLE_TODO':
+          return {
+            ...state,
+            todo: state.todo.map(todo => {
+              if (todo.id === action.payload) {
+                return {
+                  ...todo,
+                  completed: !todo.completed
+                };
+              } else {
+                return todo;
+              }
+            })
+          };
+          
       case 'ADD_TODO':
-        return {
-          ...state,
-          todo:
-          [...state.todo,
-            { 
+          const newTodo = {
             item: action.payload,
             completed: false,
-            id: Date.now(),
-             }],
-           editing: !state.editing
+            id: Date.now()
+          }
+        return {
+            ...state,
+            todo: [...state.todo, newTodo]
+        };
+
+        case "CLEAR_COMPLETED":
+            return {
+             ...state,
+            todo: state.todo.filter(todo => !todo.completed)
         };
 
         default: 

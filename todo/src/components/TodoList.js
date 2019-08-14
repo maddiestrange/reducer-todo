@@ -1,19 +1,17 @@
-import React, { useState, useReducer } from 'react';
+import React from 'react';
 
-import { initialState, Reducer } from '../reducers/reducers';
-
-const TodoList = () => {
-    const [state] = useReducer(Reducer, initialState);
-    
-    return (
-        <div className="list">
-        <ul>
-        {console.log(state.todo)}
-        {state.todo.map(item => <li key={item.id}>{item.item}</li>)}
-        </ul>
+const TodoList = ({ todo, toggleTodo }) => {
+  return (
+    <div>
+      {todo.map(todo => (
+        <div key={todo.id}
+             onClick={() => toggleTodo(todo.id)}
+             className={todo.completed ? "completed" : ""}>
+          {todo.item}
         </div>
-    );
-  };
-  
-  export default TodoList;
-  
+      ))}
+    </div>
+  );
+};
+
+export default TodoList;
