@@ -15,20 +15,20 @@ function App() {
     });
   }
 
-  function clearTodo() {
+  function clearCompleted() {
     dispatch({
       type: "CLEAR_COMPLETED"
     });
   }
 
-  const addTodo(item) {
+  function addTodo(item) {
     dispatch({ type: "ADD_TODO", payload: item });
   };
 
   return (
     <div className="App">
       <TodoForm addTodo={addTodo} clearCompleted={clearCompleted} />
-      <TodoList todoArray={state.todo} toggleTodo={toggleTodo} />
+      <TodoList todo={state.todo} toggleTodo={toggleTodo} />
     </div>
   );
 }

@@ -6,10 +6,11 @@ function TodoForm(props) {
     const [newTodo, setNewTodo] = useState('');
   
     const handleChanges = e => {
-      setNewTodo({[e.target.name]: e.target.value});
+      setNewTodo(e.target.value);
     };
 
     const handleSubmit = e => {
+      e.preventDefault();
       addTodo(newTodo);
       setNewTodo('');
     };
